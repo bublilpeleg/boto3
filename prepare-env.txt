@@ -1,0 +1,19 @@
+# If you want to run from a container and mount your host configurations (ssh, aws configurations, etc.):
+docker run -it --rm -v ~/.aws:/root/.aws -v ~/.ssh:/root/.ssh -v <PATH_TO_BOTO3_DEMO_ON_HOST_MACHINE>:/boto3-demo ubuntu:latest bash
+
+apt update -y
+apt install ssh -y
+apt install python3
+apt install python3-pip
+apt install dnsutils
+pip3 install awscli
+pip install -r requirements.txt
+aws configure
+
+# Configure aws cli aliases:
+git clone https://github.com/awslabs/awscli-aliases.git
+mkdir -p ~/.aws/cli
+cp awscli-aliases/alias ~/.aws/cli/alias
+
+
+docker run -it --rm -v ~/.aws:/root/.aws -v ~/.ssh:/root/.ssh -v /home/pelegb/Desktop/udemy_courses/boto3_Lambada:/boto3_Lambada ubuntu:latest bash
